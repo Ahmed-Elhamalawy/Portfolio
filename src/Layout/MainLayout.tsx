@@ -1,11 +1,11 @@
 // src/layout/MainLayout.tsx
-import React, { act } from "react";
+import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import LightIcon from "../assets/LightIcon.svg?react"; // Works as component
 import { useResponsive } from "../Hooks/UseResponsive";
 
 const MainLayout: React.FC = () => {
-  const [activeTab, setActiveTab] = React.useState("Home");
+  const [activeTab, setActiveTab] = useState("Home");
   const tabs = ["Home", "About", "Resume", "Projects"];
   const { isPhone, isTablet, isDesktop } = useResponsive();
 
