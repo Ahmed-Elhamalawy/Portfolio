@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap");
+
+/* Reset default margins/padding */
+html,
+body {
+  font-family: "Oleo Script", cursive;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure full height for flex layouts */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Optional: reset all elements */
+* {
+  box-sizing: inherit;
+}
