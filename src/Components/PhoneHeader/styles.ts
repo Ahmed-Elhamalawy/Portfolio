@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.header`
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #1a1a1a;
   padding: 20px;
   padding-bottom: 10px;
   display: flex;
@@ -34,7 +36,7 @@ export const NavMenu = styled.div`
   border-radius: 10px;
 `;
 
-export const NavLink = styled(Link)<{ active: boolean }>`
+export const NavLink = styled.span<{ active: boolean }>`
   text-decoration: none;
   font-size: 18px;
   color: ${({ active }) => (active ? "#4FC3F7" : "#FFFFFF")};
@@ -44,6 +46,7 @@ export const NavLink = styled(Link)<{ active: boolean }>`
   width: 90%;
   text-align: center;
   transition: 0.3s;
+  cursor: pointer;
 
   &:hover {
     color: #4fc3f7;

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { HeaderContainer, Brand, Nav, NavLink } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMoon } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +24,6 @@ const DesktopHeader: React.FC<DesktopHeaderProps> = ({
         {tabs.map((tab) => (
           <NavLink
             key={tab}
-            to={`/${tab.toLowerCase()}`}
             active={activeTab === tab}
             onClick={() => setActiveTab(tab)}
           >

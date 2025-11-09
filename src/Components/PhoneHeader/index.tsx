@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
@@ -34,7 +33,6 @@ const PhoneHeader: React.FC<PhoneHeaderProps> = ({
             {tabs.map((tab) => (
               <NavLink
                 key={tab}
-                to={`/${tab.toLowerCase()}`}
                 active={activeTab === tab}
                 onClick={() => {
                   setActiveTab(tab);
