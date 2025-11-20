@@ -150,7 +150,6 @@ const Projects: React.FC = () => {
                   <ProjectImageContainer>
                     <TechLabel colors={colors}>{project.technology}</TechLabel>
                     <ProjectImage src={project.image} alt={project.title} />
-                    <DateBadge colors={colors}>{project.date}</DateBadge>
                     <ProjectOverlay colors={colors}>
                       {project.link !== "#" && (
                         <ViewProjectButton colors={colors}>
