@@ -1,218 +1,119 @@
-import styled from "styled-components";
-import { Fonts } from "../../constants/Fonts";
+// styles.ts
+import styled, { keyframes } from "styled-components";
 
-// About Section
-export const AboutSection = styled.section`
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 20px;
+interface ThemeProps {
+  colors: {
+    background: string;
+    navBg: string;
+    navIcons: string;
+    logo: string;
+    text: string;
+    btnBg: string;
+  };
+}
+
+interface ResponsiveProps {
+  isPhone: boolean;
+}
+
+// Rotation animation for text
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 `;
 
-// Titles
-export const Title = styled.h2`
-  margin-bottom: 16px;
-  font-size: 2.2rem;
-  font-family: ${Fonts.script};
-  color: #ffffff;
-`;
-
-export const SubTitle = styled.h3`
-  font-family: ${Fonts.poppins};
-  font-size: 1.8rem;
-  color: #4fc3f7;
-  text-align: center;
-`;
-
-// Skills Grid
-export const SkillsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+export const AboutContainer = styled.div<ThemeProps, ResponsiveProps>`
   width: 100%;
-  max-width: 900px;
-`;
-
-export const SkillCard = styled.div`
+  min-height: 100vh;
+  background-color: ${(props) => props.colors.background};
+  padding: ${(isPhone) => (isPhone ? "0.5rem" : "3rem")};
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 20px 10px;
-  background-color: #1a1a1a;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: ${Fonts.poppins};
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
 `;
 
-export const SkillName = styled.span`
-  font-size: 16px;
+export const ContentWrapper = styled.div<ResponsiveProps>`
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: ${(props) => (props.isPhone ? "column-reverse" : "row")};
+  gap: ${(props) => (props.isPhone ? "3rem" : "5rem")};
+  align-items: ${(props) => (props.isPhone ? "flex-start" : "flex-start")};
+  padding: ${(props) => (props.isPhone ? "1rem" : "3rem")};
+  background-color: ${(props) =>
+    props.isPhone ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.5)"};
+  border-radius: 30px;
 `;
 
-// Custom Timeline
-export const TimelineWrapper = styled.div`
-  position: relative;
+export const LeftSection = styled.div<ResponsiveProps>`
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  max-width: 800px;
-  width: 100%;
-  padding-left: 40px;
-
-  @media (max-width: 768px) {
-    padding-left: 30px;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, #4fc3f7 0%, #2196f3 100%);
-    border-radius: 2px;
-
-    @media (max-width: 768px) {
-      left: 11px;
-      width: 2px;
-    }
-  }
+  gap: 2rem;
+  align-items: center;
 `;
 
-export const TimelineItem = styled.div`
-  position: relative;
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  margin-bottom: 50px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-`;
-
-export const Dot = styled.div`
-  position: absolute;
-  left: -33px;
-  top: 5px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #4fc3f7 0%, #2196f3 100%);
-  border: 4px solid #0a0a0a;
-  box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.2),
-    0 0 20px rgba(79, 195, 247, 0.4);
-  z-index: 2;
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    left: -25px;
-    width: 16px;
-    height: 16px;
-    border: 3px solid #0a0a0a;
-  }
-
-  ${TimelineItem}:hover & {
-    transform: scale(1.3);
-    box-shadow: 0 0 0 6px rgba(79, 195, 247, 0.3),
-      0 0 30px rgba(79, 195, 247, 0.6);
-  }
-`;
-
-export const TimelineContent = styled.div`
-  font-family: ${Fonts.poppins};
-  color: #fff;
-  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 24px;
+export const RightSection = styled.div<ResponsiveProps>`
   flex: 1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: ${(props) => (props.isPhone ? "100%" : "auto")};
+`;
+
+export const TagsContainer = styled.div<ResponsiveProps>`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+`;
+
+export const Tag = styled.div<ThemeProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  background-color: ${(props) => props.colors.btnBg};
+  border-radius: 12px;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  width: 100%;
+  max-width: 250px;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #4fc3f7 0%, #2196f3 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  ${TimelineItem}:hover &::before {
-    transform: scaleX(1);
-  }
-
-  ${TimelineItem}:hover & {
+  &:hover {
     transform: translateX(5px);
-    box-shadow: 0 6px 20px rgba(79, 195, 247, 0.2);
-    border-color: #4fc3f7;
-  }
-
-  h4 {
-    margin: 0 0 8px 0;
-    font-size: 1.3rem;
-    color: #4fc3f7;
-    font-weight: 600;
-  }
-
-  p {
-    margin: 8px 0 12px 0;
-    color: #e1e1e1;
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
-
-  span {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: #4fc3f7;
-    background: rgba(79, 195, 247, 0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(79, 195, 247, 0.3);
-    margin-top: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 `;
 
-export const CompanyName = styled.p`
-  font-size: 0.9rem;
-  color: #4fc3f7;
-  margin-bottom: 12px;
-  margin-top: 4px;
+export const TagIcon = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  opacity: 0.7;
 `;
 
-export const AchievementsList = styled.ul`
-  margin: 12px 0;
-  padding-left: 20px;
-  color: #e1e1e1;
-  font-size: 0.9rem;
+export const TagText = styled.span<ThemeProps>`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: ${(props) => props.colors.text};
+`;
+
+export const AboutTitle = styled.h2<ThemeProps>`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: ${(props) => props.colors.text};
+  margin: 0 0 0.5rem 0;
+`;
+
+export const AboutDescription = styled.p<ThemeProps & ResponsiveProps>`
+  font-size: ${(props) => (props.isPhone ? "1rem" : "1.05rem")};
   line-height: 1.8;
-`;
-
-export const TechStack = styled.div`
-  margin-top: 12px;
-  font-size: 0.85rem;
-  color: #aaa;
-  font-style: italic;
+  color: ${(props) => props.colors.text};
+  opacity: 0.85;
+  margin: 0;
+  text-align: ${(props) => (props.isPhone ? "start" : "justify")};
 `;

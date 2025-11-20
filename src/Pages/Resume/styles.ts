@@ -1,6 +1,5 @@
 // styles.ts
 import styled from "styled-components";
-import { Fonts } from "../../constants/Fonts";
 
 export const ResumeSection = styled.section`
   color: #fff;
@@ -13,7 +12,7 @@ export const ResumeSection = styled.section`
 export const ResumeTitle = styled.h2`
   margin-bottom: 32px;
   font-size: 2.2rem;
-  font-family: ${Fonts.script};
+
   color: #ffffff;
 `;
 
@@ -50,7 +49,7 @@ export const DownloadButton = styled.button`
   border-radius: 50px;
   padding: 16px 32px;
   font-size: 1.1rem;
-  font-family: ${Fonts.poppins};
+
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

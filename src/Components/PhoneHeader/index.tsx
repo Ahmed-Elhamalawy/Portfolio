@@ -1,65 +1,54 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMoon, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
-import {
-  HeaderContainer,
-  Brand,
-  NavMenu,
-  NavLink,
-  IconGroup,
-  Dropdown,
-} from "./styles";
+import { HeaderContainer, IconGroup } from "./styles";
+import Logo from "../../assets/Logo";
+import { useTheme } from "../../Hooks/useTheme";
+import { Sun } from "lucide-react";
+import { useClickSound } from "../../Hooks/useClickSound";
 
 interface PhoneHeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
 }
 
-const tabs = ["Home", "About", "Resume", "Projects"];
-
-const PhoneHeader: React.FC<PhoneHeaderProps> = ({
-  activeTab,
-  setActiveTab,
-}) => {
+const PhoneHeader: React.FC<PhoneHeaderProps> = ({}) => {
+  const { toggleTheme, theme, colors } = useTheme();
   const [showMenu, setShowMenu] = useState(false);
-  const [isLight, setIsLight] = useState(false);
+  const playClick = useClickSound(0.5);
 
   return (
-    <HeaderContainer>
-      {showMenu && (
-        <Dropdown>
-          <NavMenu>
-            {tabs.map((tab) => (
-              <NavLink
-                key={tab}
-                active={activeTab === tab}
-                onClick={() => {
-                  setActiveTab(tab);
-                  setShowMenu(false);
-                }}
-              >
-                {tab}
-              </NavLink>
-            ))}
-          </NavMenu>
-        </Dropdown>
-      )}
-
-      <Brand>Ahmed</Brand>
+    <HeaderContainer color={colors.navBg}>
+      <Logo color={colors.logo} width={30} height={30} />
 
       <IconGroup>
         <FontAwesomeIcon
-          icon={faBars}
-          width={30}
-          height={30}
-          color="white"
+          icon={faPhone}
+          style={{ fontSize: 23 }}
+          color={colors.navIcons}
           onClick={() => setShowMenu(!showMenu)}
         />
-        {isLight ? (
-          <FontAwesomeIcon icon={faMoon} width={30} height={30} color="white" />
+        {theme === "light" ? (
+          <FontAwesomeIcon
+            onClick={() => {
+              playClick();
+              toggleTheme();
+            }}
+            icon={faMoon}
+            style={{ fontSize: 23 }}
+            color={colors.navIcons}
+          />
         ) : (
-          <FontAwesomeIcon icon={faSun} width={30} height={30} color="white" />
+          <Sun
+            onClick={() => {
+              playClick();
+              toggleTheme();
+            }}
+            width={30}
+            height={30}
+            color={colors.navIcons}
+          />
         )}
       </IconGroup>
     </HeaderContainer>

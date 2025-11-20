@@ -1,34 +1,66 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+interface ColorsProps {
+  colors: {
+    background: string;
+    navIcons: string;
+    navBg: string;
+    logo: string;
+  };
+}
+
+export const HeaderContainer = styled.header<ColorsProps>`
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #1a1a1a;
-  padding-inline: 120px;
-  padding-top: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  height: 60px;
+  border-radius: 1000px;
+  margin-top: 20px;
+  padding-inline: 40px;
+  background: ${({ colors }) => colors.navBg};
+
+  @media (min-width: 760px) and (max-width: 1024px) {
+    width: 70%;
+  }
 `;
 
-export const Brand = styled.span`
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: bold;
-`;
-
-export const Nav = styled.nav`
+export const LogoSection = styled.div`
   display: flex;
-  gap: 50px;
+  align-items: center;
+  gap: 15px;
 `;
 
-export const NavLink = styled.span<{ active: boolean }>`
-  text-decoration: none;
-  font-size: 22px;
-  color: ${({ active }) => (active ? "#4FC3F7" : "#FFFFFF")};
-  transition: color 0.3s;
+export const Nav = styled.nav<ColorsProps>`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  svg {
+    color: ${({ colors }) => colors.navIcons};
+    font-size: 25px;
+    cursor: pointer;
+  }
+`;
+
+export const NavIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ThemeToggle = styled.button<ColorsProps>`
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+  color: ${({ colors }) => colors.navIcons};
 
   &:hover {
     color: #4fc3f7;
