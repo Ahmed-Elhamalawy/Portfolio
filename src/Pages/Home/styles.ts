@@ -26,6 +26,8 @@ export const Name = styled.span<{ color?: string; isPhone: boolean }>`
   font-weight: 700;
   margin-bottom: ${(props) => (props.isPhone ? "0" : "10px")};
   color: ${(props) => props.color};
+  transform: ${(props) =>
+    props.isPhone ? "translateY(20px)" : "translateY(30px)"};
 `;
 
 export const Title = styled.span<{ color?: string; isPhone: boolean }>`
@@ -64,7 +66,8 @@ export const AvatarImage = styled(motion.img)<{
   height: ${(props) => (props.isPhone ? "200px" : "350px")};
   object-fit: cover;
   border: 2px solid ${(props) => props.color || "transparent"};
-  margin-top: ${(props) => (props.isPhone ? "30px" : "0")};
+  margin-top: ${(props) => (props.isPhone ? "20px" : "0")};
+  margin-bottom: ${(props) => (props.isPhone ? "20px" : "0")};
   display: block;
 `;
 
@@ -87,8 +90,8 @@ export const ActionButton = styled.button<{ colors: any }>`
   height: 38px;
   background: ${(props) => props.colors.btnBg};
   border-radius: 20px;
-  border: none;
   color: ${(props) => props.colors.text};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
@@ -116,6 +119,7 @@ export const IconButton = styled.div<{ colors: any }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 `;
 
 export const ScrollDownContainer = styled.div<{ isPhone: boolean }>`

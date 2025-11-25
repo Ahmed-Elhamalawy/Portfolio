@@ -13,6 +13,7 @@ import Logo from "../../assets/Logo";
 import { useTheme } from "../../Hooks/useTheme";
 import { useClickSound } from "../../Hooks/useClickSound";
 import Tooltip from "@mui/material/Tooltip";
+import AnimatedContent from "../AnimatedContent";
 
 interface DesktopHeaderProps {
   activeTab: string;
@@ -27,83 +28,96 @@ const DesktopHeader: React.FC<DesktopHeaderProps> = ({
   const playClick = useClickSound(0.5); // optional volume
 
   return (
-    <HeaderContainer colors={colors}>
-      <LogoSection>
-        <Logo width={40} height={40} color={colors.logo} />
-      </LogoSection>
+    <AnimatedContent
+      distance={150}
+      direction="vertical"
+      reverse={true}
+      duration={1.2}
+      ease="bounce3.out"
+      initialOpacity={0}
+      animateOpacity={true}
+      scale={1}
+      threshold={0.2}
+      delay={0}
+    >
+      <HeaderContainer colors={colors}>
+        <LogoSection>
+          <Logo width={40} height={40} color={colors.logo} />
+        </LogoSection>
 
-      <Nav colors={colors}>
-        {/* Home */}
-        <Tooltip title="Home" arrow>
-          <FontAwesomeIcon
-            icon={faHouse}
-            style={{ cursor: "pointer" }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          />
-        </Tooltip>
-
-        {/* About */}
-        <Tooltip title="About" arrow>
-          <FontAwesomeIcon
-            icon={faUser}
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveTab("About")}
-          />
-        </Tooltip>
-
-        {/* Skills */}
-        <Tooltip title="Skills" arrow>
-          <Target
-            size={25}
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveTab("Skills")}
-          />
-        </Tooltip>
-
-        {/* Projects */}
-        <Tooltip title="Projects" arrow>
-          <span style={{ transform: "translateY(3px)" }}>
-            <ProjectsIcon
-              width={27}
-              height={27}
-              onPress={() => setActiveTab("Projects")}
+        <Nav colors={colors}>
+          {/* Home */}
+          <Tooltip title="Home" arrow>
+            <FontAwesomeIcon
+              icon={faHouse}
+              style={{ cursor: "pointer" }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             />
-          </span>
-        </Tooltip>
+          </Tooltip>
 
-        {/* Experience */}
-        <Tooltip title="Experience" arrow>
-          <FontAwesomeIcon
-            icon={faBriefcase}
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveTab("Experience")}
-          />
-        </Tooltip>
+          {/* About */}
+          <Tooltip title="About" arrow>
+            <FontAwesomeIcon
+              icon={faUser}
+              style={{ cursor: "pointer" }}
+              onClick={() => setActiveTab("About")}
+            />
+          </Tooltip>
 
-        {/* Phone icon (optional, does nothing) */}
-        <Tooltip title="Contact" arrow>
-          <FontAwesomeIcon icon={faPhone} color={colors.navIcons} />
-        </Tooltip>
-      </Nav>
+          {/* Skills */}
+          <Tooltip title="Skills" arrow>
+            <Target
+              size={25}
+              style={{ cursor: "pointer" }}
+              onClick={() => setActiveTab("Skills")}
+            />
+          </Tooltip>
 
-      <ThemeToggle
-        colors={colors}
-        onClick={() => {
-          toggleTheme();
-          playClick();
-        }}
-      >
-        {theme === "light" ? (
-          <FontAwesomeIcon
-            style={{ fontSize: 25 }}
-            color={colors.navIcons}
-            icon={faMoon}
-          />
-        ) : (
-          <Sun size={25} color={colors.navIcons} />
-        )}
-      </ThemeToggle>
-    </HeaderContainer>
+          {/* Projects */}
+          <Tooltip title="Projects" arrow>
+            <span style={{ transform: "translateY(3px)" }}>
+              <ProjectsIcon
+                width={27}
+                height={27}
+                onPress={() => setActiveTab("Projects")}
+              />
+            </span>
+          </Tooltip>
+
+          {/* Experience */}
+          <Tooltip title="Experience" arrow>
+            <FontAwesomeIcon
+              icon={faBriefcase}
+              style={{ cursor: "pointer" }}
+              onClick={() => setActiveTab("Experience")}
+            />
+          </Tooltip>
+
+          {/* Phone icon (optional, does nothing) */}
+          <Tooltip title="Contact" arrow>
+            <FontAwesomeIcon icon={faPhone} color={colors.navIcons} />
+          </Tooltip>
+        </Nav>
+
+        <ThemeToggle
+          colors={colors}
+          onClick={() => {
+            toggleTheme();
+            playClick();
+          }}
+        >
+          {theme === "light" ? (
+            <FontAwesomeIcon
+              style={{ fontSize: 25 }}
+              color={colors.navIcons}
+              icon={faMoon}
+            />
+          ) : (
+            <Sun size={25} color={colors.navIcons} />
+          )}
+        </ThemeToggle>
+      </HeaderContainer>
+    </AnimatedContent>
   );
 };
 

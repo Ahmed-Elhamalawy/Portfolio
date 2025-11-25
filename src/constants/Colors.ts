@@ -6,7 +6,7 @@ export const lightColors = {
   navIcons: "#474747",
   logo: "#000000",
   text: "#000000",
-  btnBg: "#D9E2E9",
+  btnBg: "#ffffff",
 };
 
 export const darkColors = {
@@ -15,5 +15,5 @@ export const darkColors = {
   navIcons: "#e8e3e3",
   logo: "#ffffff",
   text: "#ffffff",
-  btnBg: "#434141",
+  btnBg: "#000000",
 };
